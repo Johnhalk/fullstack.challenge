@@ -1,16 +1,14 @@
 // @flow
 
 import React, { Component } from 'react'
-import { computed } from 'mobx'
 import { observer, inject } from 'mobx-react'
-
-import type Account from 'src/models/Account'
 
 import GreetingHeader from './GreetingHeader'
 import List from './List'
 import EventCell from './EventCell'
 
 import style from './style'
+import AgendaStore from './AgendaStore'
 
 /**
  * Agenda component
@@ -19,40 +17,21 @@ import style from './style'
  */
 
 type tProps = {
-  account: Account
+  store: AgendaStore
 }
 
-@inject('account')
+@inject('store')
 @observer
 class Agenda extends Component<tProps> {
-  /**
-   * Return events from all calendars, sorted by date-time.
-   * Returned objects contain both Event and corresponding Calendar
-   */
-  @computed
-  get events (): Array<{ calendar: Calendar, event: Event }> {
-    const events = this.props.account.calendars
-      .map((calendar) => (
-        calendar.events.map((event) => (
-          { calendar, event }
-        ))
-      ))
-      .flat()
-
-    // Sort events by date-time, ascending
-    events.sort((a, b) => (a.event.date.diff(b.event.date).valueOf()))
-
-    return events
-  }
-
   render () {
+    const { store } = this.props
     return (
       <div className={style.outer}>
         <div className={style.container}>
-          <GreetingHeader />
+          <GreetingHeader currentHour={store.currentHour} />
 
           <List>
-            {this.events.map(({ calendar, event }) => (
+            {store.events.map(({ calendar, event }) => (
               <EventCell key={event.id} calendar={calendar} event={event} />
             ))}
           </List>
