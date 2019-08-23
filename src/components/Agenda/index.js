@@ -31,6 +31,7 @@ class Agenda extends Component<tProps> {
       agendaEventsByDepartment,
       sortedCalendars,
       setSelectedCalendar,
+      setSortByDepartment,
       sortByDepartment,
     } = this.props.store
 
@@ -38,7 +39,7 @@ class Agenda extends Component<tProps> {
       const department = (key === 'undefined') ? 'No department' : key
       return (
         <div key={department} className={style.eventLists}>
-          {department}
+          Department: {department}
           {agendaEventsByDepartment[key].map(({ calendar, event }) => (
             <EventCell key={event.id} calendar={calendar} event={event} />
           ))}
@@ -57,6 +58,7 @@ class Agenda extends Component<tProps> {
             <GreetingHeader greetingMessage={greetingMessage} />
             <CalendarDropdown setSelectedCalendar={setSelectedCalendar} sortedCalendars={sortedCalendars} />
           </div>
+          <button onClick={setSortByDepartment}>Filter by department</button>
 
           <List>
             {sortByDepartment

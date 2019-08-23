@@ -18,7 +18,7 @@ class AgendaStore {
     selectedCalendar = 'All'
     // Boolean to determine wether to sort events by depeartment
     @observable
-    sortByDepartment = true;
+    sortByDepartment = false;
 
     // COMPUTED STATE
 
@@ -66,10 +66,7 @@ class AgendaStore {
     @computed
     get agendaEventsByDepartment (): Object<{}> {
       let events = this.events
-      if (this.sortByDepartment) {
-        events = groupBy(events, 'event.department')
-      }
-      return events
+      return groupBy(events, 'event.department')
     }
 
     // ACTION STATE
@@ -78,6 +75,12 @@ class AgendaStore {
     @action.bound
     setSelectedCalendar (calendarId) {
       this.selectedCalendar = calendarId
+    }
+
+    // Select if events are sorted by department or not
+    @action.bound
+    setSortByDepartment () {
+      this.sortByDepartment = !this.sortByDepartment
     }
 
     // Set time to current hour
