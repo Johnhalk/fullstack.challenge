@@ -34,8 +34,10 @@ class Agenda extends Component<tProps> {
     return (
       <div className={style.outer}>
         <div className={style.container}>
+        <div className={style.header}>
           <GreetingHeader greetingMessage={greetingMessage} />
           <CalendarDropdown setSelectedCalendar={setSelectedCalendar} sortedCalendars={sortedCalendars} />
+        </div>
           <List>
             {events.map(({ calendar, event }) => (
               <EventCell key={event.id} calendar={calendar} event={event} />
