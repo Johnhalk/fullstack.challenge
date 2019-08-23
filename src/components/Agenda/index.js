@@ -4,6 +4,7 @@ import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
 
 import GreetingHeader from './GreetingHeader'
+import CalendarDropdown from './CalendarDropdown'
 import List from './List'
 import EventCell from './EventCell'
 
@@ -24,13 +25,17 @@ type tProps = {
 @observer
 class Agenda extends Component<tProps> {
   render () {
-    const { greetingMessage, events } = this.props.store
-    console.log(this.props.store)
+    const {
+      greetingMessage,
+      events,
+      sortedCalendars,
+      setSelectedCalendar,
+    } = this.props.store
     return (
       <div className={style.outer}>
         <div className={style.container}>
           <GreetingHeader greetingMessage={greetingMessage} />
-
+          <CalendarDropdown setSelectedCalendar={setSelectedCalendar} sortedCalendars={sortedCalendars} />
           <List>
             {events.map(({ calendar, event }) => (
               <EventCell key={event.id} calendar={calendar} event={event} />
