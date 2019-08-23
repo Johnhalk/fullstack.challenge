@@ -7,7 +7,8 @@ import greeting from 'lib/greeting'
 import { DateTime } from 'luxon'
 
 class AgendaStore {
-    // OBSERVABLES
+
+// OBSERVABLE STATE
     @observable
     currentHour = DateTime.local().hour
     // Initialize an Account populated with random values
@@ -17,7 +18,7 @@ class AgendaStore {
     @observable
     selectedCalendar = 'All'
 
-    // COMPUTED
+// COMPUTED STATE
 
     // Set the greeting message depending on time of day
     @computed
@@ -59,7 +60,8 @@ class AgendaStore {
         ))
         .flat()
     }
-    // ACTIONS
+
+// ACTION STATE
 
     // Set selected Calendar Id
     @action.bound
