@@ -24,14 +24,7 @@
   margin: 0 auto;
 }
 
-.header {
-  display: block;
-  padding: 16px 0 12px 16px;
-  @include title-text;
-  color: $blackColor;
-}
-
-.header {
+.header, .eventLists {
   display: block;
   padding: 16px 0 12px 16px;
   @include title-text;
