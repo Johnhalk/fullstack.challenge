@@ -13,13 +13,14 @@ type tProps = {
     sortedCalendars: array
     }
 
-export default ({ setSelectedCalendar, sortedCalendars }: tProps) => (
-  <div className={style.header}>
+export default ({ setSelectedCalendar, sortedCalendars }: tProps) => {
+  let i = 1
+  return (<div className={style.header}>
     <select onChange={event => setSelectedCalendar(event.target.value)}>
       <option key={'All'} value='All'>All Calendars</option>
       {sortedCalendars.map(({ calendar }) => (
-        <option key={calendar.id} value={calendar.id}>{calendar.id}</option>
+        <option key={calendar.id} value={calendar.id}>Calendar {i++}</option>
       ))}
     </select>
-  </div>
-)
+  </div>)
+}

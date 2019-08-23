@@ -64,7 +64,7 @@ class AgendaStore {
 
     // Sort Events by department
     @computed
-    get agendaEventsByDepartment (): Object<{}> {
+    get agendaEventsByDepartment (): Object<{ calendar: Calendar, event: Event }> {
       let events = this.events
       return groupBy(events, 'event.department')
     }
