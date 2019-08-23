@@ -2,7 +2,6 @@
 
 import React from 'react'
 
-import greeting from 'lib/greeting'
 import style from './style'
 
 /**
@@ -10,11 +9,11 @@ import style from './style'
  * Displays greeting, changing on time of day
  */
 type tProps = {
-    currentHour: integer
+  greetingMessage: string
   }
 
-export default ({ currentHour }: tProps) => (
+export default ({ greetingMessage }: tProps) => (
   <div className={style.header}>
-    {greeting(currentHour)}
+    {greetingMessage}
   </div>
 )

@@ -24,14 +24,15 @@ type tProps = {
 @observer
 class Agenda extends Component<tProps> {
   render () {
-    const { store } = this.props
+    const { greetingMessage, events } = this.props.store
+    console.log(this.props.store)
     return (
       <div className={style.outer}>
         <div className={style.container}>
-          <GreetingHeader currentHour={store.currentHour} />
+          <GreetingHeader greetingMessage={greetingMessage} />
 
           <List>
-            {store.events.map(({ calendar, event }) => (
+            {events.map(({ calendar, event }) => (
               <EventCell key={event.id} calendar={calendar} event={event} />
             ))}
           </List>

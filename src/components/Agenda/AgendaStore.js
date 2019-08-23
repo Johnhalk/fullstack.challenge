@@ -3,6 +3,7 @@
 import { observable, computed, action } from 'mobx'
 
 import createAccount from 'lib/createAccount'
+import greeting from 'lib/greeting'
 import { DateTime } from 'luxon'
 
 class AgendaStore {
@@ -11,6 +12,12 @@ class AgendaStore {
     // Initialize an Account populated with random values
     @observable
     account = createAccount()
+
+    // Set the greeting message depending on time of day
+    @computed
+    get greetingMessage (): string {
+      return greeting(this.currentHour)
+    }
 
     /**
    * Return events from all calendars, sorted by date-time.
