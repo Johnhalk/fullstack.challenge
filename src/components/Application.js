@@ -20,7 +20,7 @@ class Application extends Component {
   componentDidMount () {
     this.interval = setInterval(() => {
       this.store.setCurrentHour()
-    }, 1000)
+    }, 60 * 1000)
   }
 
   componentWillUnMount () {

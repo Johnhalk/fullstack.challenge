@@ -58,7 +58,8 @@ class Agenda extends Component<tProps> {
             <GreetingHeader greetingMessage={greetingMessage} />
             <CalendarDropdown setSelectedCalendar={setSelectedCalendar} sortedCalendars={sortedCalendars} />
           </div>
-          <button onClick={setSortByDepartment}>Filter by department</button>
+
+          <button className={style.button} onClick={setSortByDepartment}>Filter by department</button>
 
           <List>
             {sortByDepartment
