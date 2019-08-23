@@ -1,13 +1,12 @@
 // @flow
 
 import { observable, computed, action } from 'mobx'
-import { filter } from 'lodash'
+import { filter, groupBy } from 'lodash'
 import createAccount from 'lib/createAccount'
 import greeting from 'lib/greeting'
 import { DateTime } from 'luxon'
 
 class AgendaStore {
-
 // OBSERVABLE STATE
     @observable
     currentHour = DateTime.local().hour
@@ -17,8 +16,11 @@ class AgendaStore {
     // Initialize default selected calendar as All
     @observable
     selectedCalendar = 'All'
+    // Boolean to determine wether to sort events by depeartment
+    @observable
+    sortByDepartment = true;
 
-// COMPUTED STATE
+    // COMPUTED STATE
 
     // Set the greeting message depending on time of day
     @computed
@@ -45,7 +47,6 @@ class AgendaStore {
       if (selectedCalendar !== 'All') {
         events = filter(events, function (event) { return event.calendar.id === selectedCalendar })
       }
-
       events.sort((a, b) => (a.event.date.diff(b.event.date).valueOf()))
 
       return events
@@ -61,7 +62,17 @@ class AgendaStore {
         .flat()
     }
 
-// ACTION STATE
+    // Sort Events by department
+    @computed
+    get agendaEventsByDepartment (): Object<{}> {
+      let events = this.events
+      if (this.sortByDepartment) {
+        events = groupBy(events, 'event.department')
+      }
+      return events
+    }
+
+    // ACTION STATE
 
     // Set selected Calendar Id
     @action.bound
