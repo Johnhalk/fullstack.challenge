@@ -40,7 +40,7 @@ export default observer(({ calendar, event }: tProps) => {
       <div className={style.card} style={{ backgroundColor: cardBgColor }}>
         <div className={style.cardTitle} style={{ color: titleColor }}>
           <span>{event.title}</span>
-          {!!event.department && <span>{event.department}</span>}
+          {event.department && <span>{event.department}</span>}
         </div>
       </div>
     </div>

@@ -4,7 +4,7 @@
   "description": "Live Briefing - Challenge",
   "main": "src/index.js",
   "scripts": {
-    "eslint": "eslint \"./lib/**/*.js\" \"./src/**/*.js\"",
+    "eslint": "eslint --fix --ext \"./lib/**/*.js\" \"./src/**/*.js\"",
     "start": "webpack-dev-server --config ./webpack.config.js --hot",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

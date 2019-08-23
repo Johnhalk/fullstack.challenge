@@ -1,14 +1,12 @@
 // @flow
 
 import React, { Component } from 'react'
-import { DateTime } from 'luxon'
 import { computed } from 'mobx'
 import { observer, inject } from 'mobx-react'
 
-import greeting from 'lib/greeting'
-
 import type Account from 'src/models/Account'
 
+import GreetingHeader from './GreetingHeader'
 import List from './List'
 import EventCell from './EventCell'
 
@@ -51,12 +49,7 @@ class Agenda extends Component<tProps> {
     return (
       <div className={style.outer}>
         <div className={style.container}>
-
-          <div className={style.header}>
-            <span className={style.title}>
-              {greeting(DateTime.local().hour)}
-            </span>
-          </div>
+          <GreetingHeader />
 
           <List>
             {this.events.map(({ calendar, event }) => (
